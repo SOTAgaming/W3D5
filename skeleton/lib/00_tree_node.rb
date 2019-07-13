@@ -54,13 +54,14 @@ class PolyTreeNode
   end
 
   def bfs(target)
-    queue = []
-    queue.push(self)                                  # node 1
+    queue = [self]
+                                     # node 1
 
     until queue.empty?
         cur = queue.shift                             # n3, [n4, n5, n6, n7]
         return cur if cur.value == value              # false
-        cur.children.each {|child| queue.push(child)} # [n4, n5, n6, n7, n8, n9]
+        queue.concat(cur.children)
+        #cur.children.each {|child| queue.push(child)} # [n4, n5, n6, n7, n8, n9]
     end 
     nil
   end 
